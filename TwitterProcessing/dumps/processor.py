@@ -29,10 +29,10 @@ neg_tweets = [('Esta garota é feia','negativa'), ('O mundo é cheio de desgraç
 
 #Amostras de Palavras
 amostras = []
-amostrasPalavras = []
 
 #Define as amostras com seus sentimentos
 for (frase, sentimento) in pos_tweets + neg_tweets:
+    amostrasPalavras = []
     listaDePalavras = nltk.wordpunct_tokenize(frase)
     for palavra in listaDePalavras:
         if palavra not in stop_words:
