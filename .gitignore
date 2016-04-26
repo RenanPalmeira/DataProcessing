@@ -1,3 +1,4 @@
+
 # Packages
 *.egg
 *.egg-info
@@ -7,6 +8,14 @@ eggs/
 parts/
 var/
 sdist/
+target/
+share/
+build/
+lib/
+local/
+include/
+bin/
+man/
 develop-eggs/
 .installed.cfg
 
@@ -20,6 +29,12 @@ pip-log.txt
 #Translations
 *.mo
 
+# MongoDB
+*.json
+*.bson
+dump/
+
+
 #Mr Developer
 .mr.developer.cfg
 
@@ -29,7 +44,8 @@ settings.py
 
 *.py~
 
-*.ipynb
+.ipynb_checkpoints/
+!*.ipynb
 
 TwitterProcessing/twitter-return.txt
 
