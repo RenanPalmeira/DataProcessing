@@ -3,13 +3,13 @@
 from __future__ import print_function
 
 import nltk
-from pymongo import MongoClient # About MongoDB https://goo.gl/PvVRcd
 
 try:
+    from pymongo import MongoClient # About MongoDB https://goo.gl/PvVRcd
     # Default in localhost 
     client = MongoClient() 
     db = client.twitter
-    # Dump file in http://pastebin.com/aJjeY64C
+    # Dump file in http://pastebin.com/y3dALXYs
     # For import dump file https://goo.gl/ae0xVB
     stopwords = [item['word'] for item in db.stopword.find()]
 except Exception, e:
@@ -28,12 +28,14 @@ class TwitterProcessing(object):
         self._training_set = nltk.classify.apply_features(self.extract_features, samples)
         self.classifier = nltk.NaiveBayesClassifier.train(self._training_set)
 
-    def show_features(self):
-        self.classifier.show_most_informative_features(self._word_features)
+    def show_features(self, length=None):
+        if length is None:
+            length = len(self._word_features)
+        return self.classifier.show_most_informative_features(length)
 
     def classify(self, sample):
         if type(sample) is str:
-            sample = sample.split()
+            sample = unicode(sample.decode('utf8')).split()
         return self.classifier.classify(self.extract_features(sample))
 
     def get_word_in_sample(self, sample):
